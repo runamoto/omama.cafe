@@ -1,6 +1,6 @@
 /*
  
- Welcome to the omama cafe!
+ Welcome to omama cafe!
  This website runs on Are.na's API.
 
  Let me take you through the code. 
@@ -10,17 +10,30 @@
  A project this simple probably doesn't need it but
  whatever... It's fun :)
 
-*/
-
-// This function will load the channel from the API
-// and return the data as a JSON object.
+/* ****************************************************
+ * ----------------------------------------------------
+ This function will load the channel from the API
+ and return the data as a JSON object.
+ *
+ */
 const load_channel = async (slug) => {
   const res = await fetch("https://api.are.na/v2/channels/" + slug);
   const data = await res.json();
   return data;
 };
+/* ------------------------------------------------
+ */
 
-/*
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+
+/* ****************************************************
+ * ----------------------------------------------------
+ *
  * This is the main function that will render the
  * website. It will call the api, get the data, and
  * then render the blocks.
@@ -64,8 +77,23 @@ const Main = () => {
 
   return block;
 };
-
 /*
+ * ****************************************************
+ * ----------------------------------------------------
+ */
+
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// 7
+// 8
+// 9
+
+/* ****************************************************
+ * ----------------------------------------------------
  *
  * This is the block component. It takes a string
  * and renders it as a block.
@@ -77,6 +105,7 @@ const Main = () => {
  */
 const Block = (b) => {
   /*
+   * ------------------------------------------------
    * A block is a card, or an Are.na block turned
    * into a card.
    *
@@ -91,6 +120,9 @@ const Block = (b) => {
    *
    */
   let block = b.split("").map(Letter);
+  /*
+   * ------------------------------------------------
+   */
 
   return h(
     "div",
@@ -107,6 +139,10 @@ const Block = (b) => {
     block,
   );
 };
+/*
+ * ****************************************************
+ * ----------------------------------------------------
+ */
 
 /*
  * This is the letter component. It takes a letter
