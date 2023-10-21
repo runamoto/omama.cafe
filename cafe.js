@@ -9,7 +9,13 @@ const Main = () => {
 
   let block = createMemo(() => {
     if (channel()) {
-      return channel().contents.map((b) => Block(b.content));
+      return channel().contents.map((b) => {
+        if (b.class === "Link") {
+          return () => LinkBlock(b.title, b.source.url);
+        } else {
+          return () => Block(b.content);
+        }
+      });
     } else {
       return "loading...".split("").map(Letter);
     }
@@ -36,7 +42,42 @@ const Block = (b) => {
         "box-shadow": "0 0 50px 2px rgba(200,0,200,0.3)",
       },
     },
-    block,
+    block
+  );
+};
+
+const LinkBlock = (title, link) => {
+  return h(
+    "div",
+    {
+      style: {
+        width: "300px",
+        height: "300px",
+        margin: "50px",
+        border: "1px solid black",
+        padding: "50px",
+        "box-shadow": "0 0 50px 2px rgba(200,0,200,0.3)",
+      },
+    },
+    title,
+    h("br"),
+    h("br"),
+    h("br"),
+    h(
+      "a",
+      {
+        href: link,
+        _target: "blank",
+        style: {
+          all: "unset",
+          border: "1px dotted rgb(250,50,20)",
+          cursor: "pointer",
+          padding: "10px",
+          color: "rgb(250, 50, 0)",
+        },
+      },
+      "click mee"
+    )
   );
 };
 
@@ -58,7 +99,7 @@ const Letter = (l) => {
         setVal((prev) => prev + 40);
       },
     },
-    letter,
+    letter
   );
 };
 
